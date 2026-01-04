@@ -1,14 +1,14 @@
-import json
+from fastapi import FastAPI
 from src.feature_engineering import hash_feature
 
-
-def load_users(file_path: str):
-    with open(file_path, "r") as f:
-        return json.load(f)
+app = FastAPI()
 
 
-def predict(user_id: str, data_file: str) -> int:
-    users = load_users(data_file)
-    if user_id not in users:
-        raise ValueError("User not found")
-    return hash_feature(user_id)
+@app.get("/health")
+def health_check():
+    return {"status": "ok"}
+
+
+@app.get("/predict/{user_id}")
+def predict(user_id: str):
+    return {"prediction": hash_feature(user_id)}
