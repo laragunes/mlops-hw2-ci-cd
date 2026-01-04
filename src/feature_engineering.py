@@ -1,4 +1,4 @@
-def hash_feature(value str, num_buckets: int = 100) -> int:
+def hash_feature(value: str, num_buckets: int = 100) -> int:
     """
     Converts a high-cardinality categorical feature into a fixed-size bucket
     using hashing.
@@ -14,4 +14,5 @@ def hash_feature(value str, num_buckets: int = 100) -> int:
         raise ValueError("Input value must be a string")
 
     return abs(hash(value)) % num_buckets
+
 
