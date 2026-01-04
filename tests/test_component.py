@@ -1,7 +1,7 @@
 import json
 import pytest
 
-from src.app import predict
+from src.app import predict_from_file
 
 
 @pytest.fixture
@@ -17,10 +17,10 @@ def sample_data_file(tmp_path):
 
 
 def test_predict_returns_int(sample_data_file):
-    result = predict("user_123", sample_data_file)
+    result = predict_from_file("user_123", sample_data_file)
     assert isinstance(result, int)
 
 
 def test_predict_user_not_found(sample_data_file):
     with pytest.raises(ValueError):
-        predict("user_999", sample_data_file)
+        predict_from_file("user_999", sample_data_file)
