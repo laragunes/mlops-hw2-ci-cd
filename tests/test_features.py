@@ -10,4 +10,3 @@ def test_hash_feature_range():
     num_buckets = 100
     result = hash_feature("user_123", num_buckets)
     assert 0 <= result < num_buckets
-
